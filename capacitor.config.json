@@ -1,0 +1,9 @@
+{
+  "appId": "com.balgyan.learningapp",
+  "appName": "BalGyan Kids",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

@@ -1,0 +1,57 @@
+// Complete Hindi Alphabet Learning Data (हिंदी वर्णमाला - स्वर एवं व्यंजन)
+// Rich child-friendly entries with pictures, audio phonetics, and English meanings.
+
+export const HINDI_SWAR = [
+  { letter: 'अ', word: 'अनार', english: 'Pomegranate', emoji: '🍎', phonetics: 'अ से अनार', englishMeaning: 'अनार means Pomegranate', fact: 'मीठा और लाल अनार' },
+  { letter: 'आ', word: 'आम', english: 'Mango', emoji: '🥭', phonetics: 'आ से आम', englishMeaning: 'आम means Mango', fact: 'फलों का राजा आम' },
+  { letter: 'इ', word: 'इमली', english: 'Tamarind', emoji: '🫘', phonetics: 'इ से इमली', englishMeaning: 'इमली means Tamarind', fact: 'खट्टी-मीठी इमली' },
+  { letter: 'ई', word: 'ईख', english: 'Sugarcane', emoji: '🎋', phonetics: 'ई से ईख', englishMeaning: 'ईख means Sugarcane', fact: 'मीठा गन्ने का रस' },
+  { letter: 'उ', word: 'उल्लू', english: 'Owl', emoji: '🦉', phonetics: 'उ से उल्लू', englishMeaning: 'उल्लू means Owl', fact: 'रात को जागने वाला उल्लू' },
+  { letter: 'ऊ', word: 'ऊन', english: 'Wool', emoji: '🧶', phonetics: 'ऊ से ऊन', englishMeaning: 'ऊन means Wool', fact: 'गर्म कपड़ों वाली ऊन' },
+  { letter: 'ऋ', word: 'ऋषि', english: 'Sage', emoji: '🧘‍♂️', phonetics: 'ऋ से ऋषि', englishMeaning: 'ऋषि means Wise Sage', fact: 'ज्ञान देने वाले ऋषि' },
+  { letter: 'ए', word: 'एड़ी', english: 'Heel', emoji: '🦶', phonetics: 'ए से एड़ी', englishMeaning: 'एड़ी means Heel', fact: 'पैर की एड़ी' },
+  { letter: 'ऐ', word: 'ऐनक', english: 'Spectacles', emoji: '👓', phonetics: 'ऐ से ऐनक', englishMeaning: 'ऐनक means Glasses', fact: 'साफ देखने वाला चश्मा' },
+  { letter: 'ओ', word: 'ओखली', english: 'Mortar', emoji: '🥣', phonetics: 'ओ से ओखली', englishMeaning: 'ओखली means Mortar', fact: 'अनाज कूटने वाली ओखली' },
+  { letter: 'औ', word: 'औरत', english: 'Woman', emoji: '👩', phonetics: 'औ से औरत', englishMeaning: 'औरत means Woman', fact: 'प्यारी ममतामयी माँ' },
+  { letter: 'अं', word: 'अंगूर', english: 'Grapes', emoji: '🍇', phonetics: 'अं से अंगूर', englishMeaning: 'अंगूर means Grapes', fact: 'गुच्छेदार रसीले अंगूर' },
+  { letter: 'अः', word: 'प्रातः', english: 'Morning', emoji: '🌅', phonetics: 'अः से नमः / प्रातः', englishMeaning: 'अः की मात्रा', fact: 'सुहानी सुबह' }
+];
+
+export const HINDI_VYANJAN = [
+  { letter: 'क', word: 'कमल', english: 'Lotus', emoji: '🪷', phonetics: 'क से कमल', englishMeaning: 'कमल means Lotus (National Flower)' },
+  { letter: 'ख', word: 'खरगोश', english: 'Rabbit', emoji: '🐇', phonetics: 'ख से खरगोश', englishMeaning: 'खरगोश means Rabbit' },
+  { letter: 'ग', word: 'गमला', english: 'Flowerpot', emoji: '🪴', phonetics: 'ग से गमला', englishMeaning: 'गमला means Flower Pot' },
+  { letter: 'घ', word: 'घर', english: 'House', emoji: '🏠', phonetics: 'घ से घर', englishMeaning: 'घ means House' },
+  { letter: 'ङ', word: 'अंग', english: 'Empty Letter', emoji: '⭐', phonetics: 'ङ से खाली', englishMeaning: 'ङ means Nasal Sound' },
+  { letter: 'च', word: 'चम्मच', english: 'Spoon', emoji: '🥄', phonetics: 'च से चम्मच', englishMeaning: 'चम्मच means Spoon' },
+  { letter: 'छ', word: 'छाता', english: 'Umbrella', emoji: '☂️', phonetics: 'छ से छाता', englishMeaning: 'छाता means Umbrella' },
+  { letter: 'ज', word: 'जहाज', english: 'Ship', emoji: '🚢', phonetics: 'ज से जहाज', englishMeaning: 'जहाज means Ship' },
+  { letter: 'झ', word: 'झंडा', english: 'Flag', emoji: '🇮🇳', phonetics: 'झ से झंडा', englishMeaning: 'झंडा means National Flag' },
+  { letter: 'ञ', word: 'खाली', english: 'Empty Letter', emoji: '✨', phonetics: 'ञ से खाली', englishMeaning: 'ञ means Nasal Sound' },
+  { letter: 'ट', word: 'टमाटर', english: 'Tomato', emoji: '🍅', phonetics: 'ट से टमाटर', englishMeaning: 'टमाटर means Tomato' },
+  { letter: 'ठ', word: 'ठठेरा', english: 'Tinsmith', emoji: '🔨', phonetics: 'ठ से ठठेरा', englishMeaning: 'ठठेरा means Metal Craftsman' },
+  { letter: 'ड', word: 'डमरू', english: 'Damru Drum', emoji: '🪘', phonetics: 'ड से डमरू', englishMeaning: 'डमरू means Small Drum' },
+  { letter: 'ढ', word: 'ढक्कन', english: 'Lid', emoji: '🫙', phonetics: 'ढ से ढक्कन', englishMeaning: 'ढक्कन means Lid' },
+  { letter: 'ण', word: 'खाली', english: 'Empty Sound', emoji: '🌟', phonetics: 'ण से खाली', englishMeaning: 'ण Letter' },
+  { letter: 'त', word: 'तरबूज', english: 'Watermelon', emoji: '🍉', phonetics: 'त से तरबूज', englishMeaning: 'तरबूज means Watermelon' },
+  { letter: 'थ', word: 'थर्मस', english: 'Flask', emoji: '🍶', phonetics: 'थ से थर्मस', englishMeaning: 'थर्मस means Thermos Flask' },
+  { letter: 'द', word: 'दवात', english: 'Inkpot', emoji: '🖋️', phonetics: 'द से दवात', englishMeaning: 'दवात means Inkpot' },
+  { letter: 'ध', word: 'धनुष', english: 'Bow', emoji: '🏹', phonetics: 'ध से धनुष', englishMeaning: 'धनुष means Bow' },
+  { letter: 'न', word: 'नल', english: 'Tap', emoji: '🚰', phonetics: 'न से नल', englishMeaning: 'नल means Water Tap' },
+  { letter: 'प', word: 'पतंग', english: 'Kite', emoji: '🪁', phonetics: 'प से पतंग', englishMeaning: 'पतंग means Kite' },
+  { letter: 'फ', word: 'फल', english: 'Fruits', emoji: '🍎', phonetics: 'फ से फल', englishMeaning: 'फल means Healthy Fruits' },
+  { letter: 'ब', word: 'बत्तख', english: 'Duck', emoji: '🦆', phonetics: 'ब से बत्तख', englishMeaning: 'बत्तख means Duck' },
+  { letter: 'भ', word: 'भालू', english: 'Bear', emoji: '🐻', phonetics: 'भ से भालू', englishMeaning: 'भालू means Bear' },
+  { letter: 'म', word: 'मछली', english: 'Fish', emoji: '🐟', phonetics: 'म से मछली', englishMeaning: 'मछली means Fish (जल की रानी)' },
+  { letter: 'य', word: 'यज्ञ', english: 'Sacred Fire', emoji: '🔥', phonetics: 'य से यज्ञ', englishMeaning: 'यज्ञ means Sacred Ritual' },
+  { letter: 'र', word: 'रथ', english: 'Chariot', emoji: '🎠', phonetics: 'र से रथ', englishMeaning: 'रथ means Chariot' },
+  { letter: 'ल', word: 'लट्टू', english: 'Spinning Top', emoji: '🪀', phonetics: 'ल से लट्टू', englishMeaning: 'लट्टू means Spinning Top' },
+  { letter: 'व', word: 'वक', english: 'Crane Bird', emoji: '🦩', phonetics: 'व से वक / वन', englishMeaning: 'वक means White Crane' },
+  { letter: 'श', word: 'शलजम', english: 'Turnip', emoji: '🥗', phonetics: 'श से शलजम', englishMeaning: 'शलजम means Turnip' },
+  { letter: 'ष', word: 'षट्कोण', english: 'Hexagon', emoji: '⬡', phonetics: 'ष से षट्कोण', englishMeaning: 'षट्कोण means Hexagon (6 sides)' },
+  { letter: 'स', word: 'सेब', english: 'Apple', emoji: '🍎', phonetics: 'स से सेब', englishMeaning: 'सेब means Apple' },
+  { letter: 'ह', word: 'हाथी', english: 'Elephant', emoji: '🐘', phonetics: 'ह से हाथी', englishMeaning: 'हाथी means Elephant' },
+  { letter: 'क्ष', word: 'क्षत्रिय', english: 'Warrior', emoji: '⚔️', phonetics: 'क्ष से क्षत्रिय', englishMeaning: 'क्षत्रिय means Brave Warrior' },
+  { letter: 'त्र', word: 'त्रिशूल', english: 'Trident', emoji: '🔱', phonetics: 'त्र से त्रिशूल', englishMeaning: 'त्रिशूल means Trident' },
+  { letter: 'ज्ञ', word: 'ज्ञानी', english: 'Wise Scholar', emoji: '🧑‍🎓', phonetics: 'ज्ञ से ज्ञानी', englishMeaning: 'ज्ञानी means Wise Scholar' }
+];
