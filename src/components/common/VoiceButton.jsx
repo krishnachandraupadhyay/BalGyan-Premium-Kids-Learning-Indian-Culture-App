@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume2 } from 'lucide-react';
 import { speechService } from '../../services/speechService';
 import { soundService } from '../../services/audioService';
 
-export default function VoiceButton({ text, lang = 'auto', size = 'normal', label = '' }) {
+export default function VoiceButton({ text, enText, hiText, lang = 'auto', size = 'normal', label = '' }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   const handleSpeak = (e) => {
     e.stopPropagation();
     soundService.playClick();
     setIsSpeaking(true);
-    speechService.speak(text, lang, () => {
-      setIsSpeaking(false);
-    });
+
+    if (enText && hiText) {
+      speechService.speakBilingual(enText, hiText, () => {
+        setIsSpeaking(false);
+      });
+    } else {
+      speechService.speak(text, lang, () => {
+        setIsSpeaking(false);
+      });
+    }
   };
 
   const btnClass = size === 'large' ? 'speaker-btn large' : 'speaker-btn';

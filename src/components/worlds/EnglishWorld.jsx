@@ -41,12 +41,14 @@ export default function EnglishWorld({ onReward, onBack, initialLetter = 'A' }) 
     setSelectedAnswer(null);
   };
 
-  // Speak word and Hindi meaning
+  // Speak word and Hindi meaning: "A for Apple. Apple matlab सेब"
   const speakCurrentWord = () => {
     const letterToSpeak = caseMode === 'capital' ? currentLetterData.letter : currentLetterData.letter.toLowerCase();
-    const phrase = `${letterToSpeak} for ${currentWord.word}. ${currentWord.hindiMeaning}`;
     soundService.playPop();
-    speechService.speak(phrase, 'auto');
+    speechService.speakBilingual(
+      `${letterToSpeak} for ${currentWord.word}`,
+      `${currentWord.word} मतलब ${currentWord.hindi}`
+    );
   };
 
   // Handle child tapping the big picture
@@ -130,7 +132,10 @@ export default function EnglishWorld({ onReward, onBack, initialLetter = 'A' }) 
     if (itemChoice.id === currentLetterData.words[0].id) {
       soundService.playCorrect();
       setFeedback('correct');
-      speechService.speak(`Awesome! ${currentLetterData.letter} for ${itemChoice.word}!`);
+      speechService.speakBilingual(
+        `${currentLetterData.letter} for ${itemChoice.word}`,
+        `${itemChoice.word} मतलब ${itemChoice.hindi}`
+      );
       onReward(1, 2, 'Brilliant! ⭐');
     } else {
       soundService.playTryAgain();
@@ -384,7 +389,8 @@ export default function EnglishWorld({ onReward, onBack, initialLetter = 'A' }) 
             {/* Bottom Actions: Voice replay & Next Random button */}
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px' }}>
               <VoiceButton
-                text={`${displayLetter} for ${currentWord.word}. ${currentWord.hindiMeaning}`}
+                enText={`${displayLetter} for ${currentWord.word}`}
+                hiText={`${currentWord.word} मतलब ${currentWord.hindi}`}
                 size="large"
               />
 
