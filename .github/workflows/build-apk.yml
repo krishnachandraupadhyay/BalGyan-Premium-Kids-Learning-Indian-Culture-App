@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Set up Java 17
@@ -23,64 +23,49 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: 'platforms;android-34 build-tools;34.0.0'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Set up Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install Node Dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: Build Web Assets
+      - name: Build Web App
         run: npm run build
 
-      - name: Sync Capacitor Android
+      - name: Sync Capacitor
         run: npx cap sync android
 
-      - name: Grant Execute Permission for Gradlew
+      - name: Make Gradlew Executable
         run: chmod +x android/gradlew
 
-      - name: Build APK with Gradle
+      - name: Build Debug APK
         run: |
           cd android
-          ./gradlew assembleDebug --no-daemon --stacktrace
+          ./gradlew assembleDebug --stacktrace
 
-      - name: Rename APK File
+      - name: Copy APK to Root
         run: |
           cp android/app/build/outputs/apk/debug/app-debug.apk ./BalGyan-Kids-App.apk
 
-      - name: Upload Debug APK Artifact
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: BalGyan-Kids-Learning-App-APK
           path: ./BalGyan-Kids-App.apk
+          retention-days: 30
 
-      - name: Create GitHub Release with APK
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/heads/main')
         with:
           tag_name: v1.0.0
           name: "BalGyan Kids Learning App v1.0.0 (APK)"
-          body: |
-            ## 🌟 BalGyan Kids Learning App — Android APK Download
-
-            Download the APK file below and install it directly on your Android phone!
-
-            ### What's inside:
-            - 🔤 English Adventure (130+ words A-Z with voice)
-            - 🕉️ Hindi Garden (Swar & Vyanjan)
-            - 🔢 Numbers (1-100) & Math Lab
-            - 🧗 Table Mountain (2-20 tables)
-            - 🕉️ Sanskrit Gurukul & Shlokas
-            - 🇮🇳 Bharat Explorer & National Anthem
-            - 🪔 Festivals, Good Habits & 5 Stories
-            - 🎮 Bubble Pop & Memory Games
-            - 👤 Avatar Shop & Parents Dashboard
+          body: "Official Android APK build of BalGyan Kids Learning and Indian Culture Application."
           files: ./BalGyan-Kids-App.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
