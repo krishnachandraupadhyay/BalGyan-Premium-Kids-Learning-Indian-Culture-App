@@ -12,7 +12,6 @@ export default function BharatExplorerWorld({ onReward, onBack }) {
   const currentSymbol = NATIONAL_SYMBOLS[symbolIdx] || NATIONAL_SYMBOLS[0];
 
   const handleSymbolTap = () => {
-    soundService.playPop();
     speechService.speak(`${currentSymbol.title}. ${currentSymbol.hindiDesc}`);
     onReward(1, 2, 'भारत दर्शन! 🇮🇳');
   };
@@ -177,7 +176,6 @@ export default function BharatExplorerWorld({ onReward, onBack }) {
                   key={m.name}
                   className="option-choice-card"
                   onClick={() => {
-                    soundService.playPop();
                     speechService.speak(`${m.name}, located in ${m.state}. ${m.fact}`);
                     onReward(1, 1, 'Wonder Discovered!');
                   }}
@@ -209,7 +207,6 @@ export default function BharatExplorerWorld({ onReward, onBack }) {
                   key={d.name}
                   className="option-choice-card"
                   onClick={() => {
-                    soundService.playPop();
                     speechService.speak(`${d.name} dance, from ${d.state}. ${d.desc}`);
                     onReward(1, 1, 'Dance Explored!');
                   }}
@@ -227,7 +224,6 @@ export default function BharatExplorerWorld({ onReward, onBack }) {
                   key={ins.name}
                   className="option-choice-card"
                   onClick={() => {
-                    soundService.playPop();
                     speechService.speak(`${ins.name}. ${ins.desc}`);
                     onReward(1, 1, 'Instrument Explored!');
                   }}

@@ -23,7 +23,6 @@ export default function NumberWorld({ profile, onReward, onBack }) {
 
   // Speak number
   const speakNumber = (num, item) => {
-    soundService.playPop();
     const info = COUNTING_DATA.find(d => d.number === num) || getNumberInfo(num);
     const engWord = info.english || `${num}`;
     const hinWord = info.hindi || `${num}`;
@@ -52,11 +51,9 @@ export default function NumberWorld({ profile, onReward, onBack }) {
   const handleItemTap = (idx) => {
     const nextCount = poppedCount + 1;
     setPoppedCount(nextCount);
-    soundService.playPop();
     speechService.speak(`${nextCount}`);
 
     if (nextCount === currentNum) {
-      soundService.playCorrect();
       onReward(1, 2, 'You counted all items! 🎉');
     }
   };

@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { Volume2 } from 'lucide-react';
 import { speechService } from '../../services/speechService';
-import { soundService } from '../../services/audioService';
 
 export default function VoiceButton({ text, enText, hiText, lang = 'auto', size = 'normal', label = '' }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   const handleSpeak = (e) => {
     e.stopPropagation();
-    soundService.playClick();
     setIsSpeaking(true);
 
     if (enText && hiText) {

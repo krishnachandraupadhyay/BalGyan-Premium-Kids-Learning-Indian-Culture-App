@@ -14,13 +14,11 @@ export default function SanskritWorld({ onReward, onBack }) {
   const currentShloka = SANSKRIT_SHLOKAS[shlokaIdx] || SANSKRIT_SHLOKAS[0];
 
   const handleWordTap = () => {
-    soundService.playPop();
     speechService.speak(currentWord.audio, 'hi-IN');
     onReward(1, 2, 'संस्कृत ज्ञान! ⭐');
   };
 
   const handleShlokaRecite = () => {
-    soundService.playCorrect();
     speechService.speak(currentShloka.audioText, 'hi-IN');
     onReward(2, 4, 'पावन श्लोक पाठ! 🕉️');
   };

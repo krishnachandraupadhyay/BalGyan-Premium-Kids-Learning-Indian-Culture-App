@@ -16,28 +16,28 @@ export default function HindiWorld({ onReward, onBack }) {
   const currentList = section === 'swar' ? HINDI_SWAR : HINDI_VYANJAN;
   const currentItem = currentList[currentIndex] || currentList[0];
 
-  const handleSpeak = () => {
-    soundService.playPop();
-    const phrase = `${currentItem.phonetics}. ${currentItem.englishMeaning}`;
+  const handleSpeak = (item = currentItem) => {
+    const phrase = `${item.phonetics}. ${item.englishMeaning}`;
     speechService.speak(phrase, 'hi-IN');
   };
 
   const handlePictureTap = () => {
     handleSpeak();
-    soundService.playCorrect();
     onReward(1, 2, 'बहुत बढ़िया! ⭐');
   };
 
   const handleNext = () => {
-    soundService.playClick();
-    setCurrentIndex((prev) => (prev + 1) % currentList.length);
+    const nextIdx = (currentIndex + 1) % currentList.length;
+    setCurrentIndex(nextIdx);
     setFeedback(null);
+    handleSpeak(currentList[nextIdx]);
   };
 
   const handlePrev = () => {
-    soundService.playClick();
-    setCurrentIndex((prev) => (prev - 1 + currentList.length) % currentList.length);
+    const prevIdx = (currentIndex - 1 + currentList.length) % currentList.length;
+    setCurrentIndex(prevIdx);
     setFeedback(null);
+    handleSpeak(currentList[prevIdx]);
   };
 
   const setupQuiz = () => {
@@ -324,8 +324,8 @@ export default function HindiWorld({ onReward, onBack }) {
               <button
                 key={item.letter}
                 onClick={() => {
-                  soundService.playClick();
                   setCurrentIndex(idx);
+                  handleSpeak(item);
                   if (viewMode === 'quiz') setTimeout(setupQuiz, 50);
                 }}
                 style={{

@@ -42,43 +42,46 @@ export default function EnglishWorld({ onReward, onBack, initialLetter = 'A' }) 
   };
 
   // Speak word and Hindi meaning: "A for Apple. Apple matlab सेब"
-  const speakCurrentWord = () => {
-    const letterToSpeak = caseMode === 'capital' ? currentLetterData.letter : currentLetterData.letter.toLowerCase();
-    soundService.playPop();
+  const speakCurrentWord = (wordObj = currentWord, letterStr = displayLetter) => {
     speechService.speakBilingual(
-      `${letterToSpeak} for ${currentWord.word}`,
-      `${currentWord.word} मतलब ${currentWord.hindi}`
+      `${letterStr} for ${wordObj.word}`,
+      `${wordObj.word} मतलब ${wordObj.hindi}`
     );
   };
 
   // Handle child tapping the big picture
   const handlePictureTap = () => {
     speakCurrentWord();
-    soundService.playCorrect();
     onReward(1, 2, 'Great word learning!');
     setLearnedCountForLetter(prev => prev + 1);
   };
 
   // Move to next random word or next letter
   const handleNextWord = () => {
-    soundService.playClick();
     const words = currentLetterData.words;
     let nextWordIdx = (currentWordIndex + 1) % words.length;
     setCurrentWordIndex(nextWordIdx);
+    speakCurrentWord(words[nextWordIdx], displayLetter);
   };
 
   const handleNextLetter = () => {
-    soundService.playClick();
     const nextIdx = (currentLetterIndex + 1) % ENGLISH_ALPHABET.length;
     setCurrentLetterIndex(nextIdx);
-    selectRandomWord(nextIdx);
+    const nextLetterData = ENGLISH_ALPHABET[nextIdx];
+    const randWordIdx = Math.floor(Math.random() * nextLetterData.words.length);
+    setCurrentWordIndex(randWordIdx);
+    const letterToSpeak = caseMode === 'capital' ? nextLetterData.letter : nextLetterData.letter.toLowerCase();
+    speakCurrentWord(nextLetterData.words[randWordIdx], letterToSpeak);
   };
 
   const handlePrevLetter = () => {
-    soundService.playClick();
     const prevIdx = (currentLetterIndex - 1 + ENGLISH_ALPHABET.length) % ENGLISH_ALPHABET.length;
     setCurrentLetterIndex(prevIdx);
-    selectRandomWord(prevIdx);
+    const prevLetterData = ENGLISH_ALPHABET[prevIdx];
+    const randWordIdx = Math.floor(Math.random() * prevLetterData.words.length);
+    setCurrentWordIndex(randWordIdx);
+    const letterToSpeak = caseMode === 'capital' ? prevLetterData.letter : prevLetterData.letter.toLowerCase();
+    speakCurrentWord(prevLetterData.words[randWordIdx], letterToSpeak);
   };
 
   // Generate Letter Recognition Quiz ("Which one is A?")
@@ -289,7 +292,6 @@ export default function EnglishWorld({ onReward, onBack, initialLetter = 'A' }) 
                 className="big-letter-display"
                 style={{ color: currentLetterData.color, cursor: 'pointer' }}
                 onClick={() => {
-                  soundService.playPop();
                   speechService.speak(displayLetter);
                 }}
                 title="Tap to hear letter"
@@ -362,8 +364,8 @@ export default function EnglishWorld({ onReward, onBack, initialLetter = 'A' }) 
                 <button
                   key={w.id}
                   onClick={() => {
-                    soundService.playClick();
                     setCurrentWordIndex(idx);
+                    speakCurrentWord(w, displayLetter);
                   }}
                   style={{
                     background: currentWordIndex === idx ? currentLetterData.color : '#F1F5F9',
@@ -522,9 +524,10 @@ export default function EnglishWorld({ onReward, onBack, initialLetter = 'A' }) 
               <button
                 key={item.letter}
                 onClick={() => {
-                  soundService.playClick();
                   setCurrentLetterIndex(idx);
                   selectRandomWord(idx);
+                  const word = item.words[0];
+                  speakCurrentWord(word, char);
                   if (viewMode === 'quiz-letter') setTimeout(setupLetterQuiz, 50);
                   if (viewMode === 'quiz-picture') setTimeout(setupPictureQuiz, 50);
                 }}
