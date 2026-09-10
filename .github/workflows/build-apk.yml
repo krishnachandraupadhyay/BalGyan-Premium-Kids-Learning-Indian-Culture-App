@@ -5,6 +5,9 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build Android APK
@@ -22,6 +25,8 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: 'platforms;android-34 build-tools;34.0.0'
 
       - name: Set up Node.js 20
         uses: actions/setup-node@v4
@@ -43,10 +48,39 @@ jobs:
       - name: Build APK with Gradle
         run: |
           cd android
-          ./gradlew assembleDebug --no-daemon
+          ./gradlew assembleDebug --no-daemon --stacktrace
 
-      - name: Upload Debug APK
+      - name: Rename APK File
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk ./BalGyan-Kids-App.apk
+
+      - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: BalGyan-Kids-Learning-App-APK
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          path: ./BalGyan-Kids-App.apk
+
+      - name: Create GitHub Release with APK
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/heads/main')
+        with:
+          tag_name: v1.0.0
+          name: "BalGyan Kids Learning App v1.0.0 (APK)"
+          body: |
+            ## 🌟 BalGyan Kids Learning App — Android APK Download
+
+            Download the APK file below and install it directly on your Android phone!
+
+            ### What's inside:
+            - 🔤 English Adventure (130+ words A-Z with voice)
+            - 🕉️ Hindi Garden (Swar & Vyanjan)
+            - 🔢 Numbers (1-100) & Math Lab
+            - 🧗 Table Mountain (2-20 tables)
+            - 🕉️ Sanskrit Gurukul & Shlokas
+            - 🇮🇳 Bharat Explorer & National Anthem
+            - 🪔 Festivals, Good Habits & 5 Stories
+            - 🎮 Bubble Pop & Memory Games
+            - 👤 Avatar Shop & Parents Dashboard
+          files: ./BalGyan-Kids-App.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
