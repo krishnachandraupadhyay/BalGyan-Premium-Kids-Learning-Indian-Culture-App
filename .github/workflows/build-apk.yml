@@ -23,9 +23,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
       - name: Set up Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -46,7 +43,7 @@ jobs:
       - name: Build Debug APK
         run: |
           cd android
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Copy APK to Root
         run: |
